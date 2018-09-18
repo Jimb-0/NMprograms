@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <math.h>
+#include <stdlib.h>
+using namespace std;
+int lsum(int arr[], int size){
+	int sum;
+	for (int i = 0; i <= size - 1; i++)
+	{sum += arr[i];
+	}
+	return sum;
+	
+}
+main(){
+	int val, cand[20][5] = {1001}, score = 1, passed[20] = {0},cnt = 0, i= 0, p = 0, tot_score = -1;
+	val = cand[0][0];
+	for (int a = 0; a < 20; a++)
+		{	tot_score = 0;
+		for (int b = 0; b < 5 && score != -1; cnt++)
+			{
+				if (score < 1)
+					cout<<"Invalid score"<<endl;
+				else if (score >= 1 && score < 6 )
+					{
+					tot_score += score;
+					b++;}
+				else if (score >= 6)
+					cout<<"Invalid score"<<endl;
+				cnt++;
+				cout<<"Give candidate "<<val<<" a score for question "<<b<<" from 1-5 (Enter -1 to terminate) "<<endl;
+				cin>>score;
+	}			
+		if (tot_score >= 18){
+			cout<<"Candidate "<<val<<"passed"<<endl;
+			passed[i++] += val;
+			p+=1;}
+		val++;	
+	}
+		cout<<p<<" Candidates passed \n";
+		cout<<"Candidates with passing score: ";
+		if ( passed[i] > 0)
+			{
+			for (i; i < p ; i++)
+			cout<<passed[i]<<" ";}
+	
+	return 0;}
+	

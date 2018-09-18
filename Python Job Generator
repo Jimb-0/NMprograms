@@ -1,0 +1,42 @@
+import random
+C,P,M,B,T = 5,4,3,2,1 # sets default rankings
+Josh,Mark,Jon,Adrian,Chris,Jim = 4,2,5,3,1,5 #declare variables
+mover_ranks = {"movers": {"Josh":Josh,"Mark":Mark,"Jon":Jon,"Adrian":Adrian,"Chris":Chris,"Jim":Jim},"rankings":
+{"C":C,"P":P,"M":M,"B":B,"T":T}} #gives variables reference (strings) keys 
+#Josh,Mark,Jon,Adrian,Chris,Jim = mover_ranks["rankings"]["P"],mover_ranks["rankings"]["B"],mover_ranks["rankings"]["C"],mover_ranks["rankings"]["M"],mover_ranks["rankings"]["T"],mover_ranks["rankings"]["C"] #gives variables respective rankings 
+numofjobs = 2
+numofmovers = len(mover_ranks["movers"])
+job=0
+a=0
+while numofjobs >0: #number of teams
+    job +=1
+    crew = int(input(f"How many movers does job #{job} require ? ")) # amt of movers per team
+    if crew > numofmovers: 
+        print("Not enough movers") # if amt of movers left doesn't meet # of movers needed 
+    groups = []
+    numofmovers -= crew
+    numofjobs -=1 
+    for i in range(crew): 
+        if i == 0: #1st mover
+            new = [a for a,j in mover_ranks["movers"].items() if j > 3] #list of remaining movers above M
+            if len(new) > 0: 
+                first = random.choice(new) #randomly chooses from high ranked movers list
+                groups.append(first)
+                print("First:", first)
+                mover_ranks["movers"].pop(first)
+            else:
+                newish = [b for b,j in mover_ranks["movers"].items()] #picks remaining movers
+                if len(newish) > 0:
+                    second = random.choice(newish)
+                    groups.append(second)
+                    mover_ranks["movers"].pop(second)
+                    print("Total of movers", newish)
+        else: 
+            newish = [b for b,j in mover_ranks["movers"].items()] #picks remaining movers
+            if len(newish) > 0:
+                second = random.choice(newish)
+                groups.append(second)
+                mover_ranks["movers"].pop(second)
+                print("Total of movers", newish)
+    print("Movers:", groups)
+#print(mover_ranks.get("movers"), Jim, "Jim")

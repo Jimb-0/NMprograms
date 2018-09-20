@@ -1,0 +1,32 @@
+#include <iostream>
+#include <math.h>
+using namespace std;th
+is program suggests the best stock options for Witter Investment Co.
+int main(int argc, char** argv) {
+	int datacnt = 1;
+	double average, nstockprice= 0, ostockprice = 0, min = 1000, max = 1, fluxwidth, fluxmean, pricechange, sum = 0;
+	while(nstockprice != -1)
+	{
+		cout<<"Enter stock prices and enter -1 to terminate "<<endl;
+		cin>>nstockprice;
+	    if (nstockprice < min && nstockprice != -1)
+	    	min = nstockprice;
+	    if (nstockprice > max)
+	    	max = nstockprice; 
+	    sum += nstockprice;
+	    ostockprice = nstockprice - ostockprice;
+	    pricechange += (nstockprice - ostockprice);
+	    ostockprice = nstockprice;
+		datacnt++;
+	}
+	average = sum/(  datacnt-1);
+	cout<<max<<min<<endl;
+	cout<<"Average price = "<<average<<endl;
+	fluxwidth = max-min;
+	cout<<"Fluctuation width = "<<fluxwidth<<endl;  
+	fluxmean = sqrt(pricechange/(datacnt-1));
+	cout<<"Fluctuation mean = "<<fluxmean<<endl;
+ 	if (nstockprice < average && fluxwidth < .33 * average || fluxmean < .33 * average)
+	cout<<"You should buy this stock"<<endl;
+		return 0;
+}
